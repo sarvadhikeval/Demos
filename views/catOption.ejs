@@ -1,0 +1,16 @@
+<% if(subData[0].subcategory){ %>
+    
+    <option value="">--Select Subategory--</option>
+    <% for(let catData of subData) {%>
+        <option value="<%= catData.id%>"><%= catData.subcategory%></option>
+        <%}%>
+    <%}else{%>
+        <option value="">--Select Extraategory--</option>
+        <% for(let catData of subData) {%>
+        <option value="<%= catData.id%>"><%= catData.extracategory%></option>
+            <%}%>
+
+        <%}%>
+
+
+

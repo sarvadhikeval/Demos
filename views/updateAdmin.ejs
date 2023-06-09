@@ -1,0 +1,236 @@
+<%- include('header')%>
+      <!-- ============================================================== -->
+      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Page wrapper  -->
+      <!-- ============================================================== -->
+      <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Update Your Data</h4>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Library
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+          <!-- ============================================================== -->
+          <!-- Start Page Content -->
+          <!-- ============================================================== -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <form class="form-horizontal" action="/UpdateAdminData" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="updateKey" value="<%= AdminRec.id%>">
+                  <div class="card-body">
+                    <h4 class="card-title"><%=AdminRec.name%> Data</h4>
+                    <div class="form-group row">
+                      <label
+                        for="fname"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >First Name</label
+                      >
+                      <% let arr =  AdminRec.name.split(' '); %>
+                      <div class="col-sm-9">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="fname"
+                          placeholder="First Name Here"
+                          name="fname"
+                          value="<%= arr[0] %>"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label
+                        for="lname"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >Last Name</label
+                      >
+                      <div class="col-sm-9">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="lname"
+                          placeholder="Last Name Here"
+                          name="lname"
+                          value="<%= arr[1] %>"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label
+                        for="lname"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >Email</label
+                      >
+                      <div class="col-sm-9">
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="lname"
+                          placeholder="Email Here"
+                          name="email"
+                          value="<%= AdminRec.email%>"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label
+                        for="lname"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >Password</label
+                      >
+                      <div class="col-sm-9">
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="lname"
+                          placeholder="Password Here"
+                          name="password"
+                          value="<%= AdminRec.password%>"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label
+                        for="lname"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >City</label
+                      >
+                      <div class="col-sm-9">
+                        <select name="city" class="form-control">
+                          <option value="">-- Select --</option>
+                          <% var city = ['Surat', 'Goa', 'Mumbai']
+                          for(let ci of city){ %>
+                          <option value="<%= ci%>" <% if(AdminRec.city == ci){%> selected <%}%>><%= ci%></option>
+                          <%}%>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label
+                        for="lname"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >Gender</label
+                      >
+                      <div class="col-sm-9">
+                        <input type="radio" name="gender" value="Male" <% if(AdminRec.gender == 'Male'){%> checked <%}%> >Male
+                        <input type="radio" name="gender" value="Female" <% if(AdminRec.gender == 'Female'){%> checked <%}%>>Female
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label
+                        for="lname"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >Hobby</label
+                      >
+                      <div class="col-sm-9">
+                        <%  let hobby = AdminRec.hobby;%>
+                        <input type="checkbox" name="hobby[]" value="Music" <% if(hobby.indexOf('Music') > -1){ %> checked <%}%> >Music
+                        <input type="checkbox" name="hobby[]" value="Movie" <% if(hobby.indexOf('Movie') > -1){ %> checked <%}%> >Movie
+                        <input type="checkbox" name="hobby[]" value="Chess" <% if(hobby.indexOf('Chess') > -1){ %> checked <%}%> >Chess
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label
+                        for="cono1"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >Contact No</label
+                      >
+                      <div class="col-sm-9">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="cono1"
+                          placeholder="Contact No Here"
+                          name="phone"
+                          value="<%= AdminRec.phone%>"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label
+                        for="cono1"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >Description</label
+                      >
+                      <div class="col-sm-9">
+                        <textarea class="form-control" name="description"><%=AdminRec.description%></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label
+                        for="lname"
+                        class="col-sm-3 text-end control-label col-form-label"
+                        >Profile Picture</label
+                      >
+                      <div class="col-sm-9">
+                        <input
+                          type="file"
+                          class="form-control"
+                          name="profile"
+                        />
+                        <img src="<%= AdminRec.profile%>" height="100px" alt="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border-top">
+                    <div class="card-body">
+                      <button type="submit" class="btn btn-primary">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+             
+              
+            </div>
+            
+          </div>
+          <!-- editor -->
+          
+          <!-- ============================================================== -->
+          <!-- End PAge Content -->
+          <!-- ============================================================== -->
+          <!-- ============================================================== -->
+          <!-- Right sidebar -->
+          <!-- ============================================================== -->
+          <!-- .right-sidebar -->
+          <!-- ============================================================== -->
+          <!-- End Right sidebar -->
+          <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <%- include('footer')%>
